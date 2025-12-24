@@ -1,0 +1,12 @@
+\contentsline {section}{\numberline {1}Mental Math \& Quick Conversions}{2}{section.1}%
+\contentsline {section}{\numberline {2}Counting \& Combinatorics}{2}{section.2}%
+\contentsline {section}{\numberline {3}Probability Fundamentals}{2}{section.3}%
+\contentsline {section}{\numberline {4}Discrete Distributions}{3}{section.4}%
+\contentsline {section}{\numberline {5}Expectation \& Variance}{4}{section.5}%
+\contentsline {section}{\numberline {6}Conditional Expectation \& Trading Applications}{5}{section.6}%
+\contentsline {section}{\numberline {7}Game Theory \& Strategic Thinking}{5}{section.7}%
+\contentsline {section}{\numberline {8}Advanced Probability Topics}{6}{section.8}%
+\contentsline {section}{\numberline {9}Classic Trading Interview Puzzles}{7}{section.9}%
+\contentsline {section}{\numberline {10}Common Paradoxes \& Pitfalls}{8}{section.10}%
+\contentsline {section}{\numberline {11}Mental Math Practice}{8}{section.11}%
+\contentsline {section}{\numberline {12}Spring Week Strategy}{8}{section.12}%

@@ -1,0 +1,646 @@
+\documentclass[11pt]{article}
+
+% ---------- Layout ----------
+\usepackage[margin=0.75in]{geometry}
+\usepackage{parskip}
+
+% ---------- Math ----------
+\usepackage{amsmath, amssymb}
+
+% ---------- Lists / tables ----------
+\usepackage{enumitem}
+\usepackage{booktabs}
+
+% ---------- Links ----------
+\usepackage[hidelinks]{hyperref}
+
+% ---------- Encoding ----------
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+
+% ---------- Colors ----------
+\usepackage{xcolor}
+\definecolor{darkblue}{rgb}{0.0, 0.0, 0.5}
+\definecolor{darkgreen}{rgb}{0.0, 0.5, 0.0}
+
+% ---------- Custom commands ----------
+\newcommand{\example}[1]{\textcolor{darkblue}{\textbf{Example:}} #1}
+\newcommand{\technique}[1]{\textcolor{darkgreen}{\textbf{#1}}}
+
+% ---------- Title ----------
+\title{\textbf{Mental Math Techniques}\\Fast Arithmetic for Trading Interviews}
+\author{}
+\date{}
+
+\begin{document}
+\maketitle
+\tableofcontents
+\newpage
+
+\section{Core Philosophy}
+
+\textbf{Key principle:} Use standard decompositions and patterns, not "normal" arithmetic.
+
+\begin{itemize}[leftmargin=*]
+\item \textbf{Reduce cognitive load} --- apply patterns automatically
+\item \textbf{Avoid carrying/borrowing} --- use complements and decompositions
+\item \textbf{Round then adjust} --- work with easy numbers first
+\item \textbf{Pair to nice numbers} --- look for sums to 10, 100, 1000
+\item \textbf{Practice until automatic} --- these must be reflexive under pressure
+\end{itemize}
+
+\section{Multiplication Techniques}
+
+\subsection*{1. Two-digit $\times$ two-digit: Decompose intelligently}
+
+\textbf{General formula:} $(a+b)(c+d)=ac+ad+bc+bd$
+
+But choose $b$ and $d$ to be easy (typically multiples of 10).
+
+\vspace{0.5cm}
+\example{$47\times 63$}
+
+Rewrite as $47\times(70-7)$:
+\begin{align*}
+47\times 70 &= 3290\\
+47\times 7 &= 329\\
+47\times 63 &= 3290-329=\boxed{2961}
+\end{align*}
+
+\vspace{0.5cm}
+\example{$38\times 24$}
+
+Rewrite as $(40-2)\times 24$:
+\begin{align*}
+40\times 24 &= 960\\
+2\times 24 &= 48\\
+38\times 24 &= 960-48=\boxed{912}
+\end{align*}
+
+\vspace{0.5cm}
+\example{$56\times 17$}
+
+Rewrite as $56\times(20-3)$:
+\begin{align*}
+56\times 20 &= 1120\\
+56\times 3 &= 168\\
+56\times 17 &= 1120-168=\boxed{952}
+\end{align*}
+
+\subsection*{2. Numbers near 100}
+
+\textbf{Formula:} $(100-x)(100-y)=10000-100(x+y)+xy$
+
+This is extremely fast because you only work with small numbers $x$ and $y$.
+
+\vspace{0.5cm}
+\example{$97\times 94$}
+
+Here $x=3$, $y=6$:
+\begin{align*}
+10000-100(3+6)+3\times 6 &= 10000-900+18\\
+&= \boxed{9118}
+\end{align*}
+
+\vspace{0.5cm}
+\example{$98\times 96$}
+
+Here $x=2$, $y=4$:
+\begin{align*}
+10000-100(2+4)+2\times 4 &= 10000-600+8\\
+&= \boxed{9408}
+\end{align*}
+
+\vspace{0.5cm}
+\example{$93\times 91$}
+
+Here $x=7$, $y=9$:
+\begin{align*}
+10000-100(7+9)+7\times 9 &= 10000-1600+63\\
+&= \boxed{8463}
+\end{align*}
+
+\subsection*{3. Numbers near 50}
+
+\textbf{Formula:} $(50+x)(50+y)=2500+50(x+y)+xy$
+
+\vspace{0.5cm}
+\example{$53\times 47$}
+
+Here $x=3$, $y=-3$:
+\begin{align*}
+2500+50(3-3)+3\times(-3) &= 2500+0-9\\
+&= \boxed{2491}
+\end{align*}
+
+\vspace{0.5cm}
+\example{$56\times 54$}
+
+Here $x=6$, $y=4$:
+\begin{align*}
+2500+50(6+4)+6\times 4 &= 2500+500+24\\
+&= \boxed{3024}
+\end{align*}
+
+\vspace{0.5cm}
+\example{$48\times 52$}
+
+Here $x=-2$, $y=2$:
+\begin{align*}
+2500+50(-2+2)+(-2)\times 2 &= 2500+0-4\\
+&= \boxed{2496}
+\end{align*}
+
+\subsection*{4. Squaring numbers ending in 5}
+
+\textbf{Formula:} $(10a+5)^2=100a(a+1)+25$
+
+This is blazing fast.
+
+\vspace{0.5cm}
+\example{$35^2$}
+
+Here $a=3$:
+\[
+100\times 3\times 4+25=1200+25=\boxed{1225}
+\]
+
+\vspace{0.5cm}
+\example{$65^2$}
+
+Here $a=6$:
+\[
+100\times 6\times 7+25=4200+25=\boxed{4225}
+\]
+
+\vspace{0.5cm}
+\example{$85^2$}
+
+Here $a=8$:
+\[
+100\times 8\times 9+25=7200+25=\boxed{7225}
+\]
+
+\vspace{0.5cm}
+\example{$125^2$}
+
+Here $a=12$:
+\[
+100\times 12\times 13+25=15600+25=\boxed{15625}
+\]
+
+\subsection*{5. Multiply by 11}
+
+\textbf{Pattern:} $\overline{ab}\times 11=\overline{a(a+b)b}$ (carry if $a+b\ge 10$)
+
+\vspace{0.5cm}
+\example{$53\times 11$}
+
+Middle digit: $5+3=8$
+\[
+53\times 11=\boxed{583}
+\]
+
+\vspace{0.5cm}
+\example{$67\times 11$}
+
+Middle digit: $6+7=13$ (carry 1)
+\[
+67\times 11=(6+1)\,3\,7=\boxed{737}
+\]
+
+\vspace{0.5cm}
+\example{$84\times 11$}
+
+Middle digit: $8+4=12$ (carry 1)
+\[
+84\times 11=(8+1)\,2\,4=\boxed{924}
+\]
+
+\vspace{0.5cm}
+\textbf{Three-digit:} $\overline{abc}\times 11=\overline{a(a+b)(b+c)c}$
+
+\example{$234\times 11$}
+\[
+234\times 11=2\,(2+3)\,(3+4)\,4=2574
+\]
+But $3+4=7$, so: $\boxed{2574}$
+
+\example{$578\times 11$}
+
+Digits: $5$, $(5+7)=12$ (carry), $(7+8)=15$ (carry), $8$
+\[
+578\times 11=5\,(12)\,(15)\,8\to 5\,(13)\,5\,8\to 6\,3\,5\,8=\boxed{6358}
+\]
+
+\subsection*{6. Multiply by 5, 25, 125}
+
+\technique{Multiply by 5:} $\times 10\div 2$
+
+\example{$87\times 5=870\div 2=\boxed{435}$}
+
+\example{$124\times 5=1240\div 2=\boxed{620}$}
+
+\vspace{0.5cm}
+\technique{Multiply by 25:} $\times 100\div 4$
+
+\example{$36\times 25=3600\div 4=\boxed{900}$}
+
+\example{$84\times 25=8400\div 4=\boxed{2100}$}
+
+\vspace{0.5cm}
+\technique{Multiply by 125:} $\times 1000\div 8$
+
+\example{$16\times 125=16000\div 8=\boxed{2000}$}
+
+\example{$72\times 125=72000\div 8=\boxed{9000}$}
+
+\subsection*{7. Divide by 5, 25}
+
+\technique{Divide by 5:} $\times 2\div 10$
+
+\textbf{This is huge!} Dividing by 5 is hard; multiplying by 2 is trivial.
+
+\example{$347\div 5=694\div 10=\boxed{69.4}$}
+
+\example{$825\div 5=1650\div 10=\boxed{165}$}
+
+\vspace{0.5cm}
+\technique{Divide by 25:} $\times 4\div 100$
+
+\example{$675\div 25=2700\div 100=\boxed{27}$}
+
+\example{$1250\div 25=5000\div 100=\boxed{50}$}
+
+\subsection*{8. Approximation + correction}
+
+\textbf{Strategy:} Compute via an easy nearby number, then adjust.
+
+This is safer than direct multiplication under pressure.
+
+\vspace{0.5cm}
+\example{$79\times 46$}
+
+Use $80\times 46$:
+\begin{align*}
+80\times 46 &= 3680\\
+\text{subtract } 46\colon\quad 79\times 46 &= 3680-46=\boxed{3634}
+\end{align*}
+
+\vspace{0.5cm}
+\example{$68\times 29$}
+
+Use $68\times 30$:
+\begin{align*}
+68\times 30 &= 2040\\
+\text{subtract } 68\colon\quad 68\times 29 &= 2040-68=\boxed{1972}
+\end{align*}
+
+\vspace{0.5cm}
+\example{$103\times 52$}
+
+Use $100\times 52$:
+\begin{align*}
+100\times 52 &= 5200\\
+\text{add } 3\times 52\colon\quad 103\times 52 &= 5200+156=\boxed{5356}
+\end{align*}
+
+\section{Subtraction: Difference Method}
+
+\textbf{Never borrow!} Instead, count up from the smaller number to the larger.
+
+\vspace{0.5cm}
+\example{$10000-5873$}
+
+Ask: $5873+?=10000$
+
+Count up:
+\begin{align*}
+5873 &\to 6000 \quad (+127)\\
+6000 &\to 10000 \quad (+4000)\\
+\text{Total:}\quad &\boxed{4127}
+\end{align*}
+
+\vspace{0.5cm}
+\example{$8000-3456$}
+
+Count up:
+\begin{align*}
+3456 &\to 3500 \quad (+44)\\
+3500 &\to 8000 \quad (+4500)\\
+\text{Total:}\quad &\boxed{4544}
+\end{align*}
+
+\vspace{0.5cm}
+\example{$5000-2738$}
+
+Count up:
+\begin{align*}
+2738 &\to 2800 \quad (+62)\\
+2800 &\to 5000 \quad (+2200)\\
+\text{Total:}\quad &\boxed{2262}
+\end{align*}
+
+\vspace{0.5cm}
+\example{$1000-647$}
+
+Count up:
+\begin{align*}
+647 &\to 650 \quad (+3)\\
+650 &\to 1000 \quad (+350)\\
+\text{Total:}\quad &\boxed{353}
+\end{align*}
+
+This is \textbf{faster and more accurate} under pressure than borrowing.
+
+\section{Addition: Chunking Strategy}
+
+\textbf{Always scan for complements to 10, 100, 1000} before adding left-to-right.
+
+\vspace{0.5cm}
+\example{$487+596+213+404$}
+
+Pair to 1000s:
+\begin{align*}
+(487+\underline{513}) &= 1000 \quad \text{but we have 596, so:}\\
+487+596 &= 1083\\
+213+404 &= 617\\
+\text{Total:}\quad 1083+617 &= \boxed{1700}
+\end{align*}
+
+Better approach:
+\begin{align*}
+(596+404) &= 1000\\
+(487+213) &= 700\\
+\text{Total:}\quad &= \boxed{1700}
+\end{align*}
+
+\vspace{0.5cm}
+\example{$38+67+62+33$}
+
+Pair to 100:
+\begin{align*}
+(38+62) &= 100\\
+(67+33) &= 100\\
+\text{Total:}\quad &= \boxed{200}
+\end{align*}
+
+\vspace{0.5cm}
+\example{$145+387+255+613$}
+
+Pair smartly:
+\begin{align*}
+(145+255) &= 400\\
+(387+613) &= 1000\\
+\text{Total:}\quad &= \boxed{1400}
+\end{align*}
+
+\vspace{0.5cm}
+\example{$19+47+81+53$}
+
+Pair to even 100s:
+\begin{align*}
+(19+81) &= 100\\
+(47+53) &= 100\\
+\text{Total:}\quad &= \boxed{200}
+\end{align*}
+
+\section{Division Shortcuts}
+
+\subsection*{1. Dividing by 9}
+
+\textbf{Pattern:} $n\div 9\approx n\times 0.111\ldots$
+
+Better: use the fact that $9\times 11=99\approx 100$
+
+\example{$456\div 9$}
+
+Think: $456\div 9=456\times\frac{11}{99}=\frac{5016}{99}\approx\frac{5000}{100}=50$
+
+Exact: $456=9\times 50+6$, so $456\div 9=50.666\ldots=\boxed{50\tfrac{2}{3}}$
+
+\subsection*{2. Dividing by 15}
+
+\textbf{Strategy:} $\div 15=\div 3\div 5=\div 3\times 2\div 10$
+
+\example{$450\div 15$}
+\begin{align*}
+450\div 3 &= 150\\
+150\div 5 &= 150\times 2\div 10=30\\
+\text{Answer:}\quad &\boxed{30}
+\end{align*}
+
+\subsection*{3. Dividing by 12}
+
+\textbf{Strategy:} $\div 12=\div 4\div 3$ or $\div 3\div 4$
+
+\example{$288\div 12$}
+\begin{align*}
+288\div 4 &= 72\\
+72\div 3 &= 24\\
+\text{Answer:}\quad &\boxed{24}
+\end{align*}
+
+\section{Percentages}
+
+\subsection*{Quick percentage calculations}
+
+\textbf{Key insight:} $a\%$ of $b$ = $b\%$ of $a$
+
+\example{$16\%$ of $25$}
+
+Instead compute $25\%$ of $16=4$
+
+So $16\%$ of $25=\boxed{4}$
+
+\vspace{0.5cm}
+\example{$8\%$ of $75$}
+
+Instead compute $75\%$ of $8=6$
+
+So $8\%$ of $75=\boxed{6}$
+
+\vspace{0.5cm}
+\example{$12\%$ of $50$}
+
+$12\%=\frac{12}{100}$, so $12\%$ of $50=\frac{12\times 50}{100}=\frac{600}{100}=\boxed{6}$
+
+Or: $50\%$ of $12=6$
+
+\subsection*{Common percentages to memorize}
+
+\begin{center}
+\begin{tabular}{ll}
+\toprule
+\textbf{Percentage} & \textbf{Fraction/Decimal}\\
+\midrule
+$10\%$ & $0.1$\\
+$12.5\%$ & $\tfrac{1}{8}=0.125$\\
+$16.666\ldots\%$ & $\tfrac{1}{6}\approx 0.167$\\
+$20\%$ & $\tfrac{1}{5}=0.2$\\
+$25\%$ & $\tfrac{1}{4}=0.25$\\
+$33.333\ldots\%$ & $\tfrac{1}{3}\approx 0.333$\\
+$37.5\%$ & $\tfrac{3}{8}=0.375$\\
+$40\%$ & $\tfrac{2}{5}=0.4$\\
+$50\%$ & $\tfrac{1}{2}=0.5$\\
+$62.5\%$ & $\tfrac{5}{8}=0.625$\\
+$66.666\ldots\%$ & $\tfrac{2}{3}\approx 0.667$\\
+$75\%$ & $\tfrac{3}{4}=0.75$\\
+$80\%$ & $\tfrac{4}{5}=0.8$\\
+$87.5\%$ & $\tfrac{7}{8}=0.875$\\
+\bottomrule
+\end{tabular}
+\end{center}
+
+\section{Fraction Arithmetic}
+
+\subsection*{Adding fractions with different denominators}
+
+\textbf{Strategy:} Cross-multiply for numerator, multiply denominators
+
+\[
+\frac{a}{b}+\frac{c}{d}=\frac{ad+bc}{bd}
+\]
+
+\example{$\frac{2}{3}+\frac{3}{5}$}
+
+\[
+\frac{2\times 5+3\times 3}{3\times 5}=\frac{10+9}{15}=\frac{19}{15}=1\tfrac{4}{15}
+\]
+
+\subsection*{Multiplying fractions}
+
+\textbf{Cancel before multiplying!}
+
+\example{$\frac{15}{28}\times\frac{14}{25}$}
+
+Cancel: $\frac{15}{25}=\frac{3}{5}$ and $\frac{14}{28}=\frac{1}{2}$
+
+\[
+\frac{15}{28}\times\frac{14}{25}=\frac{3}{5}\times\frac{1}{2}=\frac{3}{10}
+\]
+
+\subsection*{Dividing fractions}
+
+\textbf{Multiply by reciprocal:} $\frac{a}{b}\div\frac{c}{d}=\frac{a}{b}\times\frac{d}{c}=\frac{ad}{bc}$
+
+\example{$\frac{5}{8}\div\frac{3}{4}$}
+
+\[
+\frac{5}{8}\times\frac{4}{3}=\frac{5\times 4}{8\times 3}=\frac{20}{24}=\frac{5}{6}
+\]
+
+\section{Powers and Roots}
+
+\subsection*{Powers of 2 (memorize these!)}
+
+\begin{center}
+\begin{tabular}{ll}
+\toprule
+\textbf{Power} & \textbf{Value}\\
+\midrule
+$2^5$ & $32$\\
+$2^6$ & $64$\\
+$2^7$ & $128$\\
+$2^8$ & $256$\\
+$2^9$ & $512$\\
+$2^{10}$ & $1024$\\
+$2^{11}$ & $2048$\\
+$2^{12}$ & $4096$\\
+$2^{15}$ & $32768$\\
+$2^{16}$ & $65536$\\
+$2^{20}$ & $1048576\approx 10^6$\\
+\bottomrule
+\end{tabular}
+\end{center}
+
+\subsection*{Square roots via Newton's method (one iteration)}
+
+\textbf{Formula:} $\sqrt{n}\approx\frac{1}{2}\left(x+\frac{n}{x}\right)$ where $x$ is initial guess
+
+\example{$\sqrt{50}$}
+
+Guess $x=7$ (since $7^2=49$):
+\[
+\sqrt{50}\approx\frac{1}{2}\left(7+\frac{50}{7}\right)=\frac{1}{2}(7+7.14)=\boxed{7.07}
+\]
+True value: $7.071\ldots$
+
+\example{$\sqrt{80}$}
+
+Guess $x=9$ (since $9^2=81$):
+\[
+\sqrt{80}\approx\frac{1}{2}\left(9+\frac{80}{9}\right)=\frac{1}{2}(9+8.89)=\boxed{8.94}
+\]
+True value: $8.944\ldots$
+
+\section{Practice Drills}
+
+\subsection*{Multiplication drills (do these daily)}
+
+\begin{enumerate}[leftmargin=*]
+\item $47\times 23$
+\item $96\times 98$
+\item $53\times 47$
+\item $125^2$
+\item $67\times 11$
+\item $84\times 25$
+\item $78\times 19$
+\item $94\times 96$
+\end{enumerate}
+
+\subsection*{Subtraction drills}
+
+\begin{enumerate}[leftmargin=*]
+\item $10000-6842$
+\item $5000-2963$
+\item $8000-4157$
+\item $7500-3278$
+\end{enumerate}
+
+\subsection*{Addition drills (look for pairs)}
+
+\begin{enumerate}[leftmargin=*]
+\item $237+763+491+509$
+\item $88+67+12+33$
+\item $456+789+544+211$
+\end{enumerate}
+
+\subsection*{Division drills}
+
+\begin{enumerate}[leftmargin=*]
+\item $735\div 5$
+\item $1250\div 25$
+\item $456\div 12$
+\item $675\div 15$
+\end{enumerate}
+
+\section{Interview Strategy}
+
+\subsection*{During mental math sections}
+
+\begin{itemize}[leftmargin=*]
+\item \textbf{Talk through your method} --- let them see your process
+\item \textbf{Use patterns, not brute force} --- show you have systematic techniques
+\item \textbf{Round and adjust} --- demonstrate strategic thinking
+\item \textbf{Write intermediate steps} --- reduces errors, shows clarity
+\item \textbf{Check reasonableness} --- does $97\times 94\approx 9000$? Yes.
+\item \textbf{Practice under time pressure} --- set 30-second timers
+\end{itemize}
+
+\subsection*{What interviewers are evaluating}
+
+\begin{enumerate}[leftmargin=*]
+\item \textbf{Speed} --- Can you compute quickly?
+\item \textbf{Accuracy} --- Do you make careless errors?
+\item \textbf{Method} --- Do you use smart techniques or struggle?
+\item \textbf{Composure} --- Do you panic or stay calm under pressure?
+\end{enumerate}
+
+\vspace{1cm}
+\begin{center}
+\textit{These techniques are \textbf{learnable skills}, not innate talent.}\\
+\textit{Practice 15 minutes daily for 2 weeks and they become automatic.}
+\end{center}
+
+\end{document}

@@ -1,0 +1,408 @@
+\documentclass[11pt]{article}
+
+% ---------- Layout ----------
+\usepackage[margin=0.75in]{geometry}
+\usepackage{parskip}
+
+% ---------- Math ----------
+\usepackage{amsmath, amssymb}
+
+% ---------- Lists / tables ----------
+\usepackage{enumitem}
+\usepackage{booktabs}
+
+% ---------- Links ----------
+\usepackage[hidelinks]{hyperref}
+
+% ---------- Encoding ----------
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+
+% ---------- Colors ----------
+\usepackage{xcolor}
+\definecolor{darkblue}{rgb}{0.0, 0.0, 0.5}
+
+% ---------- Title ----------
+\title{\textbf{SIG / Maven Spring Week 2025}\\Probability \& Trading Interview Prep}
+\author{}
+\date{}
+
+\begin{document}
+\maketitle
+\tableofcontents
+\newpage
+
+\section{Mental Math \& Quick Conversions}
+
+\subsection*{Essential quick calculations}
+\begin{itemize}[leftmargin=*]
+\item \textbf{Probability to Odds:} If $P(A)=p$, then odds FOR are $p:(1-p)$ or $\frac{p}{1-p}$ to 1
+\item \textbf{Odds to Probability:} If odds are $a:b$, then $P(A)=\frac{a}{a+b}$
+\item \textbf{Common fractions:} $1/6\approx 0.167$, $1/7\approx 0.143$, $1/8=0.125$, $1/9\approx 0.111$
+\item \textbf{Powers of 2:} $2^{10}=1024$, $2^{20}\approx 10^6$
+\item \textbf{Factorials:} $5!=120$, $6!=720$, $7!=5040$, $10!=3{,}628{,}800$
+\item \textbf{Common binomial coefficients:} $\binom{52}{5}=2{,}598{,}960$, $\binom{10}{3}=120$, $\binom{n}{2}=\frac{n(n-1)}{2}$
+\end{itemize}
+
+\subsection*{Trading-specific conversions}
+\begin{itemize}[leftmargin=*]
+\item \textbf{Fair price from probability:} If $P(\text{win})=p$ and payoff is \$1, fair price $= p \times 1$
+\item \textbf{Expected profit:} $E[\text{profit}] = P(\text{win})\times \text{payoff} - \text{cost}$
+\item \textbf{Breakeven probability:} To break even on a \$1 bet paying \$X: need $P(\text{win})\ge \frac{1}{X}$
+\end{itemize}
+
+\section{Counting \& Combinatorics}
+
+\subsection*{Core formulas}
+\begin{itemize}[leftmargin=*]
+\item \textbf{Permutations} (order matters): $P(n,k)=\frac{n!}{(n-k)!}$
+\item \textbf{Combinations} (order doesn't): $\binom{n}{k}=\frac{n!}{k!(n-k)!}$
+\item \textbf{Stars and bars} (distribute $n$ identical items into $k$ bins): $\binom{n+k-1}{k-1}$
+\item \textbf{Inclusion-exclusion (2 sets):} $|A\cup B|=|A|+|B|-|A\cap B|$
+\item \textbf{Inclusion-exclusion (3 sets):} $|A\cup B\cup C|=|A|+|B|+|C|-|A\cap B|-|A\cap C|-|B\cap C|+|A\cap B\cap C|$
+\item \textbf{Derangements} (permutations with no fixed points): $D_n=n!\sum_{i=0}^{n}\frac{(-1)^i}{i!}\approx \frac{n!}{e}$
+\end{itemize}
+
+\subsection*{Practice problems}
+\begin{enumerate}[leftmargin=*]
+\item \textbf{5-digit codes with no repeated digits:} $P(10,5)=\frac{10!}{5!}=30{,}240$
+
+\item \textbf{Committee of 3 from 12 people:} $\binom{12}{3}=220$
+
+\item \textbf{Poker hands:} Number of different 5-card hands: $\binom{52}{5}=2{,}598{,}960$
+
+\item \textbf{Anagrams of MISSISSIPPI:} $\frac{11!}{4!4!2!}=34{,}650$ (divide by repeated letters)
+
+\item \textbf{Distributing 10 identical candies to 4 children:} $\binom{10+4-1}{4-1}=\binom{13}{3}=286$
+\end{enumerate}
+
+\section{Probability Fundamentals}
+
+\subsection*{Core formulas}
+\begin{itemize}[leftmargin=*]
+\item \textbf{Conditional probability:} $P(A\mid B)=\frac{P(A\cap B)}{P(B)}$
+\item \textbf{Multiplication rule:} $P(A\cap B)=P(A\mid B)P(B)=P(B\mid A)P(A)$
+\item \textbf{Independence:} $A,B$ independent $\Leftrightarrow P(A\cap B)=P(A)P(B) \Leftrightarrow P(A\mid B)=P(A)$
+\item \textbf{Law of total probability:} $P(A)=\sum_i P(A\mid B_i)P(B_i)$ where $\{B_i\}$ partitions the sample space
+\item \textbf{Bayes' theorem:} $P(B_j\mid A)=\frac{P(A\mid B_j)P(B_j)}{\sum_i P(A\mid B_i)P(B_i)}$
+\item \textbf{Complement rule:} $P(A^c)=1-P(A)$
+\item \textbf{At least one:} $P(\text{at least one})=1-P(\text{none})$
+\end{itemize}
+
+\subsection*{Practice problems with solutions}
+\begin{enumerate}[leftmargin=*]
+\item \textbf{Two cards without replacement, both Aces:}\\
+$P(\text{1st Ace})=\frac{4}{52}$, $P(\text{2nd Ace}\mid\text{1st Ace})=\frac{3}{51}$\\
+Answer: $\frac{4}{52}\times\frac{3}{51}=\frac{1}{221}$
+
+\item \textbf{Monty Hall problem:} 3 doors (1 car, 2 goats). You pick door 1. Host opens door 3 (goat). Should you switch?\\
+\textit{Solution:} Always switch! $P(\text{win if switch})=\frac{2}{3}$\\
+\textit{Reasoning:} Initially $P(\text{car behind 1})=\frac{1}{3}$, $P(\text{car behind 2 or 3})=\frac{2}{3}$. After host reveals goat at door 3, all $\frac{2}{3}$ probability concentrates on door 2.
+
+\item \textbf{Two coins (fair and biased $P(H)=0.8$):} Pick randomly, flip once, get Heads. Probability it's biased?\\
+\textit{Solution using Bayes:}\\
+$P(B)=0.5$, $P(F)=0.5$, $P(H\mid B)=0.8$, $P(H\mid F)=0.5$\\
+$P(H)=0.8(0.5)+0.5(0.5)=0.65$\\
+$P(B\mid H)=\frac{0.8\times 0.5}{0.65}=\frac{0.4}{0.65}=\frac{8}{13}\approx 0.615$
+
+\item \textbf{Disease testing:} Disease affects 1\% of population. Test is 99\% accurate (both sensitivity and specificity). You test positive. What's $P(\text{disease}\mid\text{positive})$?\\
+\textit{Solution:}\\
+$P(D)=0.01$, $P(+\mid D)=0.99$, $P(+\mid D^c)=0.01$\\
+$P(D\mid +)=\frac{0.99\times 0.01}{0.99\times 0.01 + 0.01\times 0.99}=\frac{0.0099}{0.0099+0.0099}=0.5$\\
+Only 50\%! (Common interview question)
+\end{enumerate}
+
+\section{Discrete Distributions}
+
+\subsection*{Binomial: $X\sim \text{Bin}(n,p)$}
+\[
+P(X=k)=\binom{n}{k}p^k(1-p)^{n-k},\quad E[X]=np,\quad \text{Var}(X)=np(1-p)
+\]
+\textbf{Use when:} $n$ independent trials, each with success probability $p$
+
+\subsection*{Geometric: $X\sim \text{Geom}(p)$}
+\[
+P(X=k)=(1-p)^{k-1}p,\quad E[X]=\frac{1}{p},\quad \text{Var}(X)=\frac{1-p}{p^2}
+\]
+\textbf{Use when:} Counting trials until first success\\
+\textbf{Memoryless property:} $P(X>n+m\mid X>n)=P(X>m)$
+
+\subsection*{Negative Binomial: $X\sim \text{NB}(r,p)$}
+\[
+P(X=k)=\binom{k-1}{r-1}p^r(1-p)^{k-r},\quad E[X]=\frac{r}{p}
+\]
+\textbf{Use when:} Trials until $r$-th success
+
+\subsection*{Hypergeometric: $X\sim \text{Hyp}(N,K,n)$}
+\[
+P(X=k)=\frac{\binom{K}{k}\binom{N-K}{n-k}}{\binom{N}{n}},\quad E[X]=n\frac{K}{N}
+\]
+\textbf{Use when:} Sampling without replacement from finite population
+
+\subsection*{Poisson: $X\sim \text{Pois}(\lambda)$}
+\[
+P(X=k)=e^{-\lambda}\frac{\lambda^k}{k!},\quad E[X]=\text{Var}(X)=\lambda
+\]
+\textbf{Use when:} Rare events, arrival processes, or $n\to\infty$, $p\to 0$ with $np=\lambda$ fixed
+
+\subsection*{Practice problems}
+\begin{enumerate}[leftmargin=*]
+\item \textbf{Fair coin 10 times, exactly 6 heads:} $\binom{10}{6}(0.5)^{10}=\frac{210}{1024}\approx 0.205$
+
+\item \textbf{Roll die until first 6:} $E[\text{rolls}]=\frac{1}{1/6}=6$
+
+\item \textbf{Draw 5 cards, probability of exactly 2 hearts:}\\
+$\frac{\binom{13}{2}\binom{39}{3}}{\binom{52}{5}}=\frac{78\times 9139}{2{,}598{,}960}\approx 0.274$
+
+\item \textbf{Trading scenario:} Stock moves up with $p=0.55$ each day. Over 100 days, expected up days? $E[X]=100\times 0.55=55$
+\end{enumerate}
+
+\section{Expectation \& Variance}
+
+\subsection*{Core formulas}
+\begin{itemize}[leftmargin=*]
+\item \textbf{Linearity of expectation:} $E\left[\sum_i a_i X_i\right]=\sum_i a_i E[X_i]$ (NO independence needed!)
+\item \textbf{Indicator trick:} If $I=\mathbf{1}\{\text{event}\}$, then $E[I]=P(\text{event})$
+\item \textbf{Variance:} $\text{Var}(X)=E[X^2]-E[X]^2$
+\item \textbf{Variance of sum (independent):} $\text{Var}\left(\sum_i X_i\right)=\sum_i \text{Var}(X_i)$
+\item \textbf{Variance of linear transform:} $\text{Var}(aX+b)=a^2\text{Var}(X)$
+\item \textbf{Law of total expectation:} $E[X]=E[E[X\mid Y]]$
+\item \textbf{Covariance:} $\text{Cov}(X,Y)=E[XY]-E[X]E[Y]$
+\item \textbf{Variance formula:} $\text{Var}(X+Y)=\text{Var}(X)+\text{Var}(Y)+2\text{Cov}(X,Y)$
+\end{itemize}
+
+\subsection*{Classic problems}
+\begin{enumerate}[leftmargin=*]
+\item \textbf{Expected number of 6's in 30 rolls:}\\
+Let $I_i=\mathbf{1}\{\text{roll }i\text{ is 6}\}$, then $E[\sum I_i]=\sum E[I_i]=30\times\frac{1}{6}=5$
+
+\item \textbf{Coupon collector:} $n$ coupon types, how many purchases until you have all?\\
+$E[\text{coupons}]=n\left(1+\frac{1}{2}+\frac{1}{3}+\cdots+\frac{1}{n}\right)=n H_n\approx n\ln n$\\
+For $n=10$: $E\approx 29.3$ purchases
+
+\item \textbf{Matching problem (derangement):} $n$ people randomly pick from $n$ hats. Expected number with correct hat?\\
+Let $I_i=\mathbf{1}\{\text{person }i\text{ gets own hat}\}$, then $E[\sum I_i]=n\times\frac{1}{n}=1$ (always 1!)
+
+\item \textbf{Balls and bins:} Throw $m$ balls into $n$ bins uniformly. Expected empty bins?\\
+$E[\text{empty}]=n\left(1-\frac{1}{n}\right)^m\approx ne^{-m/n}$ for large $n$
+
+\item \textbf{Trading P\&L:} You buy stock at \$100. It goes up \$1 with prob 0.6, down \$1 with prob 0.4.\\
+$E[\text{change}]=0.6(1)+0.4(-1)=0.2$, so expected price after 1 period: \$100.20
+\end{enumerate}
+
+\section{Conditional Expectation \& Trading Applications}
+
+\subsection*{First-step analysis}
+Set up equation by conditioning on first outcome:
+\[
+E[\text{cost to reach goal}]=1+\sum_i p_i E[\text{cost from state }i]
+\]
+
+\subsection*{Classic examples}
+\begin{enumerate}[leftmargin=*]
+\item \textbf{Expected rolls to see first 6:}\\
+Let $E=$ expected rolls. After first roll: either get 6 (prob $\frac{1}{6}$) or back to start (prob $\frac{5}{6}$)\\
+$E=1+\frac{5}{6}E \Rightarrow E=6$
+
+\item \textbf{Gambler's ruin:} Start with \$5, bet \$1 each round, win with prob $p=0.4$. Expected rounds until broke or reach \$10?\\
+Let $E_i=$ expected rounds from \$i. Then $E_i=1+pE_{i+1}+(1-p)E_{i-1}$ with $E_0=E_{10}=0$\\
+(Solve system of equations)
+
+\item \textbf{Two dice until sum 7:} Expected rolls?\\
+$P(\text{sum}=7)=\frac{6}{36}=\frac{1}{6}$, so $E=\frac{1}{1/6}=6$
+
+\item \textbf{Unfair coin until 2 heads in a row:} $p=0.6$ for heads. Expected flips?\\
+Let $E_0=$ start, $E_1=$ after 1 head. Then:\\
+$E_0=1+0.6E_1+0.4E_0$\\
+$E_1=1+0.6\times 0+0.4E_0$\\
+Solving: $E_1=1+0.4E_0$ and $0.4E_0=1+0.6E_1$\\
+$0.4E_0=1+0.6(1+0.4E_0)=1.6+0.24E_0 \Rightarrow E_0=10$
+\end{enumerate}
+
+\section{Game Theory \& Strategic Thinking}
+
+\subsection*{Key concepts}
+\begin{itemize}[leftmargin=*]
+\item \textbf{Nash equilibrium:} No player can improve by unilaterally changing strategy
+\item \textbf{Dominant strategy:} Best response regardless of opponent's action
+\item \textbf{Mixed strategy:} Randomize between pure strategies
+\item \textbf{Expected value matching:} In equilibrium, make opponent indifferent
+\end{itemize}
+
+\subsection*{Examples}
+\begin{enumerate}[leftmargin=*]
+\item \textbf{Penalty kick:} Kicker chooses left/right, goalie chooses left/right. If goalie guesses correctly, saves 80\% of time.\\
+\textit{Equilibrium:} Both randomize 50-50 (make opponent indifferent)
+
+\item \textbf{Rock-Paper-Scissors:} Nash equilibrium is $\frac{1}{3}$ each option
+
+\item \textbf{Matching pennies:} Two players simultaneously show heads or tails. Player 1 wins if match, Player 2 wins if different.\\
+\textit{Equilibrium:} Both play 50-50 mixed strategy
+\end{enumerate}
+
+\section{Advanced Probability Topics}
+
+\subsection*{Markov chains}
+\textbf{Definition:} $P(X_{n+1}\mid X_n,X_{n-1},\ldots,X_0)=P(X_{n+1}\mid X_n)$ (memoryless)
+
+\textbf{Stationary distribution $\pi$:} Satisfies $\pi=\pi P$ where $P$ is transition matrix
+
+\textbf{Example:} Weather model: Rainy $\to$ Rainy (0.7), Rainy $\to$ Sunny (0.3), Sunny $\to$ Rainy (0.4), Sunny $\to$ Sunny (0.6)
+
+\subsection*{Random walks}
+\textbf{Simple random walk:} $S_n=\sum_{i=1}^n X_i$ where $X_i\in\{-1,+1\}$
+
+\textbf{Properties:}
+\begin{itemize}
+\item $E[S_n]=(2p-1)n$ where $p=P(X_i=1)$
+\item $\text{Var}(S_n)=4np(1-p)$
+\item If $p=0.5$: symmetric, will return to 0 with probability 1 (recurrent)
+\item If $p\ne 0.5$: will drift to $\pm\infty$ (transient)
+\end{itemize}
+
+\subsection*{Kelly criterion (bet sizing)}
+\textbf{Optimal fraction to bet:} $f^*=\frac{p(b+1)-1}{b}$ where $p=$ win probability, $b=$ odds ratio
+
+\textbf{Example:} Bet pays 2:1 (win \$2 for \$1 bet), you have edge with $p=0.6$\\
+$f^*=\frac{0.6(3)-1}{2}=\frac{0.8}{2}=0.4$ $\Rightarrow$ bet 40\% of bankroll
+
+\textbf{Half-Kelly:} Conservative traders use $\frac{f^*}{2}$ to reduce volatility
+
+\subsection*{Birthday problem variants}
+\begin{enumerate}[leftmargin=*]
+\item \textbf{Classic:} 23 people, $P(\text{collision})\approx 0.507$
+\item \textbf{General:} $n$ items, $k$ samples: $P(\text{all distinct})=\prod_{i=0}^{k-1}\frac{n-i}{n}$
+\item \textbf{Approximation:} $P(\text{collision})\approx 1-e^{-k^2/(2n)}$
+\end{enumerate}
+
+\subsection*{Memoryless property}
+\textbf{Geometric:} $P(X>n+m\mid X>n)=P(X>m)$
+
+\textbf{Example:} Already rolled die 10 times without seeing 6. Expected additional rolls until 6? Still 6!
+
+\section{Classic Trading Interview Puzzles}
+
+\subsection*{Card and dice problems}
+\begin{enumerate}[leftmargin=*]
+\item \textbf{Draw cards until Ace:} Expected draws from 52-card deck?\\
+\textit{Solution:} By symmetry, 5 groups of cards (before 1st Ace, between Aces, after last Ace). Average position of first Ace is $\frac{53}{5}\approx 10.6$
+
+\item \textbf{Higher card:} You draw a card. Opponent draws. You win if higher (Aces high). What's your probability?\\
+\textit{Solution:} By symmetry, $P(\text{win})=P(\text{lose})$ and $P(\text{tie})=\frac{1}{13}$ (same rank)\\
+$P(\text{win})=\frac{1-1/13}{2}=\frac{6}{13}\approx 0.462$
+
+\item \textbf{Roll until decrease:} Roll die repeatedly. Stop when roll is less than previous. Expected rolls?\\
+\textit{Solution:} Let $E_k=$ expected additional rolls when last roll was $k$\\
+$E_k=1+\frac{6-k}{6}\times\text{average of }E_{k+1},\ldots,E_6$\\
+$E_6=1$ (always stop next), work backwards: $E_1\approx 2.45$
+
+\item \textbf{Three of a kind:} Roll 5 dice. Probability of exactly three dice showing same number?\\
+\textit{Solution:} Choose which number appears 3 times (6 ways), choose 3 dice for it $\binom{5}{3}$, other 2 dice different from it and each other\\
+$\frac{6\times\binom{5}{3}\times 5\times 4}{6^5}=\frac{6\times 10\times 20}{7776}=\frac{1200}{7776}\approx 0.154$
+\end{enumerate}
+
+\subsection*{Probability-based games}
+\begin{enumerate}[leftmargin=*]
+\item \textbf{Dice betting game:} Roll die. Pay \$1 to play. Win amount shown on die (in dollars). Fair game?\\
+\textit{Solution:} $E[\text{winnings}]=\frac{1+2+3+4+5+6}{6}=3.5$. Yes, fair if cost is \$3.50.
+
+\item \textbf{Red or black:} Bet on red or black in roulette (18 red, 18 black, 2 green). Pays 1:1. Expected return on \$1 bet?\\
+\textit{Solution:} $E=\frac{18}{38}(2)+\frac{20}{38}(0)=\frac{36}{38}\approx 0.947$. House edge $\approx 5.3\%$
+
+\item \textbf{Double or nothing:} Start with \$1. Each round: double with prob 0.5, lose all with prob 0.5. Expected value after $n$ rounds?\\
+\textit{Solution:} $E_n=2^n\times(0.5)^n=1$ always! But median $\to 0$ (bad for Kelly)
+
+\item \textbf{Offer game:} Receive offers of \$1, \$2, \ldots, \$n uniformly random order. Accept one (no going back). Maximize expected value?\\
+\textit{Solution:} Secretary problem variant. Reject first $\frac{n}{e}$, then accept next one better than all previous. $E[\text{payoff}]\approx 0.58n$
+\end{enumerate}
+
+\subsection*{Sampling and estimation}
+\begin{enumerate}[leftmargin=*]
+\item \textbf{Pick random point in unit square. Expected distance from origin?}\\
+\textit{Solution:} $E[D]=\iint\sqrt{x^2+y^2}\,dx\,dy\approx 0.382$ (requires integration)
+
+\item \textbf{Breaking stick:} Break stick randomly in 2 places. Probability the 3 pieces form triangle?\\
+\textit{Solution:} Need all pieces $<\frac{1}{2}$. By geometric probability, answer is $\frac{1}{4}$
+
+\item \textbf{Meeting probability:} Two people arrive uniformly random in [0,1] hour. Each waits 15 min. Probability they meet?\\
+\textit{Solution:} Need $|X-Y|<0.25$. Geometric area: $1-2\times\frac{1}{2}(0.75)^2=0.4375$
+\end{enumerate}
+
+\section{Common Paradoxes \& Pitfalls}
+
+\subsection*{Simpson's paradox}
+Trend appears in groups but reverses when combined.
+
+\textbf{Example:} Drug A has better rate than Drug B in both men and women, but Drug B has better overall rate.
+
+\subsection*{False positive paradox}
+Rare disease + accurate test $\Rightarrow$ most positives are false positives (see Section 3 example)
+
+\subsection*{Berkson's paradox}
+Selection bias creates spurious negative correlation.
+
+\textbf{Example:} Among hospitalized patients, diseases appear negatively correlated (hospitalization is conditioning)
+
+\subsection*{St. Petersburg paradox}
+Fair game with infinite expected value, but no one would pay much to play.
+
+\textbf{Setup:} Flip coin until tails. Win \$$2^n$ where $n=$ number of flips. $E[\text{winnings}]=\infty$ but bounded utility explains low willingness-to-pay.
+
+\section{Mental Math Practice}
+
+\subsection*{Quick calculations to practice}
+\begin{enumerate}[leftmargin=*]
+\item $\binom{7}{3}=35$
+\item $\binom{9}{4}=126$
+\item $\binom{12}{2}=66$
+\item $(0.5)^{10}=\frac{1}{1024}\approx 0.001$
+\item $(0.9)^{10}\approx 0.349$
+\item $(0.95)^{20}\approx 0.358$
+\item $e^{-2}\approx 0.135$
+\item $\ln(2)\approx 0.693$
+\item $\sqrt{2}\approx 1.414$
+\item $\frac{1}{52}\times\frac{1}{51}=\frac{1}{2652}\approx 0.000377$
+\end{enumerate}
+
+\section{Spring Week Strategy}
+
+\subsection*{During probability interviews}
+\begin{itemize}[leftmargin=*]
+\item \textbf{Talk through your reasoning} --- don't solve silently
+\item \textbf{Identify the distribution} --- binomial? geometric? hypergeometric?
+\item \textbf{Check edge cases} --- what if $n=1$? $p=0$ or $p=1$?
+\item \textbf{Use complement} --- often easier to find $P(\text{none})$ than $P(\ge 1)$
+\item \textbf{Draw pictures} --- Venn diagrams, probability trees, sample spaces
+\item \textbf{Verify reasonableness} --- does answer make intuitive sense?
+\item \textbf{Know when to approximate} --- large $n$ small $p$ $\Rightarrow$ Poisson
+\end{itemize}
+
+\subsection*{Trading game tips}
+\begin{itemize}[leftmargin=*]
+\item \textbf{Calculate expected value quickly} --- is this +EV or -EV?
+\item \textbf{Update beliefs} --- use Bayes' rule as information arrives
+\item \textbf{Consider risk} --- Kelly criterion for sizing
+\item \textbf{Don't chase losses} --- each bet is independent
+\item \textbf{Track your P\&L mentally} --- quick addition/subtraction
+\item \textbf{Think adversarially} --- what are others likely to do?
+\end{itemize}
+
+\subsection*{Final checklist}
+\begin{enumerate}[leftmargin=*]
+\item Can you compute $\binom{n}{k}$ quickly for small $n,k$?
+\item Do you know all distributions and when to use each?
+\item Can you set up Bayes' theorem correctly?
+\item Can you solve recurrences with first-step conditioning?
+\item Have you practiced converting between odds and probabilities?
+\item Can you calculate expected values with linearity?
+\item Do you know the indicator trick cold?
+\item Have you reviewed classic puzzles (Monty Hall, birthday, etc.)?
+\end{enumerate}
+
+\vspace{1cm}
+\begin{center}
+\textit{Good luck with your spring week interviews!}\\
+\textit{Practice problems daily, think probabilistically, and trust your preparation.}
+\end{center}
+
+\end{document}
