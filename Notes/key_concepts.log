@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.25 (TeX Live 2023/Debian) (preloaded format=pdflatex 2025.12.24)  24 DEC 2025 21:19
+This is pdfTeX, Version 3.141592653-2.6-1.40.25 (TeX Live 2023/Debian) (preloaded format=pdflatex 2025.12.24)  26 DEC 2025 10:52
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -424,7 +424,7 @@ File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 
 {/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map}{/usr/share/texmf/fonts/enc/
 dvips/cm-super/cm-super-t1.enc}] [2{/usr/share/texmf/fonts/enc/dvips/cm-super/c
-m-super-ts1.enc}] [3] [4] [5] [6] [7] [8] [9] (./key_concepts.aux)
+m-super-ts1.enc}] [3] [4] [5] [6] [7] [8] [9] [10] (./key_concepts.aux)
  ***********
 LaTeX2e <2023-11-01> patch level 1
 L3 programming layer <2024-01-22>
@@ -433,13 +433,13 @@ Package rerunfilecheck Info: File `key_concepts.out' has not changed.
 (rerunfilecheck)             Checksum: C00B7EC45234A99730730C2F70AE7E3E;2270.
  ) 
 Here is how much of TeX's memory you used:
- 10956 strings out of 474222
- 163628 string characters out of 5748732
+ 10957 strings out of 474222
+ 163635 string characters out of 5748732
  1940975 words of memory out of 5000000
  32962 multiletter control sequences out of 15000+600000
  575488 words of font info for 77 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 69i,6n,79p,505b,578s stack positions out of 10000i,1000n,20000p,200000b,200000s
+ 69i,6n,79p,505b,579s stack positions out of 10000i,1000n,20000p,200000b,200000s
 </usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx10.pfb></us
 r/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb></usr/shar
 e/texlive/texmf-dist/fonts/type1/public/amsfonts/cmextra/cmex8.pfb></usr/share/
@@ -459,10 +459,10 @@ x1440.pfb></usr/share/texmf/fonts/type1/public/cm-super/sfbx1728.pfb></usr/shar
 e/texmf/fonts/type1/public/cm-super/sfrm1095.pfb></usr/share/texmf/fonts/type1/
 public/cm-super/sfrm1728.pfb></usr/share/texmf/fonts/type1/public/cm-super/sfti
 1095.pfb>
-Output written on key_concepts.pdf (9 pages, 328700 bytes).
+Output written on key_concepts.pdf (10 pages, 332189 bytes).
 PDF statistics:
- 335 PDF objects out of 1000 (max. 8388607)
- 278 compressed objects within 3 object streams
- 114 named destinations out of 1000 (max. 500000)
+ 340 PDF objects out of 1000 (max. 8388607)
+ 282 compressed objects within 3 object streams
+ 115 named destinations out of 1000 (max. 500000)
  97 words of extra memory for PDF output out of 10000 (max. 10000000)
 

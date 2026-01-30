@@ -283,9 +283,31 @@ $f^*=\frac{0.6(3)-1}{2}=\frac{0.8}{2}=0.4$ $\Rightarrow$ bet 40\% of bankroll
 \section{Classic Trading Interview Puzzles}
 
 \subsection*{Card and dice problems}
+
+\textbf{Key Formula --- Sampling Without Replacement:}
+
+When drawing from a shuffled deck \textit{without replacement}, the expected position of the \textit{first success} among $k$ special cards in $n$ total cards is:
+\[
+\boxed{E[\text{first success position}]=\frac{n+1}{k+1}}
+\]
+
+\textbf{General Principle:} Imagine dividing $n$ cards into $k+1$ groups by the $k$ special cards. By symmetry, each group has equal expected size, so the first special card appears after $\frac{n+1}{k+1}$ cards on average.
+
+\textbf{Applications:}
+\begin{itemize}
+\item \textbf{First Ace in deck:} $k=4, n=52 \Rightarrow E=\frac{53}{5}=10.6$
+\item \textbf{First King in deck:} $k=4, n=52 \Rightarrow E=\frac{53}{5}=10.6$
+\item \textbf{First heart in deck:} $k=13, n=52 \Rightarrow E=\frac{53}{14}\approx 3.79$
+\item \textbf{First red card:} $k=26, n=52 \Rightarrow E=\frac{53}{27}\approx 1.96$
+\item \textbf{General:} Any "first occurrence" problem with uniform shuffling
+\end{itemize}
+
+\textbf{Key Insight:} This formula works for \textit{any} sampling without replacement scenario where special items are uniformly distributed. The "+1" appears because positions are indexed from 1 (not 0).
+
 \begin{enumerate}[leftmargin=*]
 \item \textbf{Draw cards until Ace:} Expected draws from 52-card deck?\\
-\textit{Solution:} By symmetry, 5 groups of cards (before 1st Ace, between Aces, after last Ace). Average position of first Ace is $\frac{53}{5}\approx 10.6$
+\textit{Solution:} Using formula above with $k=4$ Aces, $n=52$ cards: $E=\frac{53}{5}=10.6$\\
+\textit{Alternative explanation:} By symmetry, 5 groups of cards (before 1st Ace, between Aces, after last Ace) each have equal expected size
 
 \item \textbf{Higher card:} You draw a card. Opponent draws. You win if higher (Aces high). What's your probability?\\
 \textit{Solution:} By symmetry, $P(\text{win})=P(\text{lose})$ and $P(\text{tie})=\frac{1}{13}$ (same rank)\\
